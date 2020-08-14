@@ -9,18 +9,23 @@ using System.Security.Claims;
 
 namespace Sweets.Controllers
 {
-  public class AccountsController : Controller
+  public class AccountController : Controller
   {
     private readonly SweetsContext _db;
     private readonly UserManager<User> _userManager;
 
     private readonly SignInManager<User> _signInManager;
 
-    public AccountsController(UserManager<User> userManager, SignInManager<User> signInManager, SweetsContext db)
+    public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, SweetsContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _db = db;
+    }
+
+    public ActionResult Index()
+    {
+      return View();
     }
 
     public IActionResult Register()
