@@ -1,22 +1,21 @@
 # Pierre's Sweet and Savory Treats
 
-#### Latest version date 
+#### Latest version date 8/14/2020
 
 #### By Deryck Jackson
 
 ## Description
 
-
-
-## User Stories
-
-
+A webpage for creating and tracking an assortment of treats and flavors associated with them.
 
 ## Specifications
 
 | Spec | Input | Output |
 | :---: | :---: | :---: |
-|  |  |  |
+| Webpage will allow user to create an account | Email: D@G.com | 'User account created' |
+| Webpage will allow users that are logged in to create treats and flavors | Create treat and flavor | treat: { Name: pastry }, flavor: { Name: strawberry } |
+| Webpage will allow users to associate flavors to treats or vice versa | treat flavor strawberry | treat: {flavor: strawberry} |
+| Webpage will display a list of all treats and flavors on the home screen a user not logged in can see and click on |  | List of treats and flavors |
 
 
 ## Setup and Installation
@@ -36,6 +35,7 @@
 * C#
 * ASP.NET MVC
 * Entity Framework Core
+* Identity Framework
 * MYSQL
 
 ### License
