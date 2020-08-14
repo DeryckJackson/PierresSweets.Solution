@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Sweets.Models.Flavor
+
+<h1 class="jumbotron">Add a Treat</h1>
+
+<h4>Add a Flavor to: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
+
+  @Html.DropDownList("TreatId", "Select Treat")
+
+  <input class="btn btn-success" type="submit" value="Add" />
+}
+
+<br>
+<input type="button" class="btn btn-info" value="Back to Flavor List" onclick="location.href='@Url.Action("Index", "Flavors")'" />

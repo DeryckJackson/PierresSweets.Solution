@@ -11,7 +11,6 @@ using System.Security.Claims;
 
 namespace Sweets.Controllers
 {
-  [Authorize] 
   public class FlavorsController : Controller
   {
     private readonly SweetsContext _db;
@@ -32,6 +31,7 @@ namespace Sweets.Controllers
       return View(model);
     }
 
+    [Authorize] 
     public ActionResult Create()
     {
       return View();
@@ -54,6 +54,7 @@ namespace Sweets.Controllers
       return View(thisFlavor);
     }
 
+    [Authorize] 
     public ActionResult Edit (int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flav => flav.FlavorId == id);
@@ -69,6 +70,7 @@ namespace Sweets.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize] 
     public ActionResult Delete(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flav => flav.FlavorId == id);
@@ -84,6 +86,7 @@ namespace Sweets.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize] 
     public ActionResult AddTreat(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flav => flav.FlavorId == id);
@@ -92,23 +95,24 @@ namespace Sweets.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddFlavor(Treat treat, int flavorId)
+    public ActionResult AddTreat(Treat treat, int flavorId)
     {
-      if (FlavorId != 0 && treat.TreatId != 0)
+      if (flavorId != 0 && treat.TreatId != 0)
       {
-        _db.FlavorFlavor.Add(new FlavorFlavor() {FlavorId = flavorId, TreatId = treat.TreatId});
+        _db.FlavorTreat.Add(new FlavorTreat() {FlavorId = flavorId, TreatId = treat.TreatId});
         _db.SaveChanges();
       }
-      return RedirectToAction("Details", new { id = FlavorId });
+      return RedirectToAction("Details", new { id = flavorId });
     }
 
+    [Authorize] 
     [HttpPost]
-    public ActionResult DeleteFlavor(int joinId)
+    public ActionResult DeleteTreat(int id, int joinId)
     {
       var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreat.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = id });
     }
   }
 }
