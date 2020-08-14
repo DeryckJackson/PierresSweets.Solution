@@ -20,7 +20,7 @@ else
   @foreach(var join in Model.Flavors)
   {
     <li>@join.Flavor.Name</li>
-    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+    @using (Html.BeginForm("DeleteFlavor", "Treats"))
     {
     @Html.Hidden("joinId", @join.FlavorTreatId)
     <input class="btn btn-danger" type="submit" value="Delete"/>
@@ -30,4 +30,5 @@ else
 }
 
 <input type="button" class="btn btn-primary" value="Add Flavor to Treat" onclick="location.href='@Url.Action("AddFlavor", "Treats", new { id = Model.TreatId })'" /><br>
-<input type="button" class="btn btn-primary" value="Back to Treat List" onclick="location.href='@Url.Action("Index", "Treats")'" />
+<br>
+<input type="button" class="btn btn-info" value="Back to Treat List" onclick="location.href='@Url.Action("Index", "Treats")'" />
