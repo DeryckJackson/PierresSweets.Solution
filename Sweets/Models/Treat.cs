@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Sweets.Models
 {
   public class Treat
