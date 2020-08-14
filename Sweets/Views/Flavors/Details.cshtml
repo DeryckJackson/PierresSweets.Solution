@@ -3,6 +3,7 @@
 }
 @using Sweets.Models;
 @model Sweets.Models.Flavor;
+@using System.Security.Claims
 
 <h1 class="jumbotron">Flavor Details</h1>
 <hr/>
@@ -20,16 +21,22 @@ else
   @foreach(var join in Model.Treats)
   {
     <li>@join.Treat.Name</li>
-    @using (Html.BeginForm("DeleteTreat", "Flavors"))
+    @if (User.Identity.IsAuthenticated)
     {
-    @Html.Hidden("joinId", @join.FlavorTreatId)
-    @Html.Hidden("id", Model.FlavorId)
-    <input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
+      @using (Html.BeginForm("DeleteTreat", "Flavors"))
+      {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      @Html.Hidden("id", Model.FlavorId)
+      <input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
+    }
     }
   }
   </ul>
 }
 
-<input type="button" class="btn btn-primary mb-2" value="Add Treat to Flavor" onclick="location.href='@Url.Action("AddTreat", "Flavors", new { id = Model.FlavorId })'" />
+@if (User.Identity.IsAuthenticated)
+{
+  <input type="button" class="btn btn-primary mb-2" value="Add Treat to Flavor" onclick="location.href='@Url.Action("AddTreat", "Flavors", new { id = Model.FlavorId })'" />
 <br>
+}
 <input type="button" class="btn btn-info" value="Back to Flavor List" onclick="location.href='@Url.Action("Index", "Flavors")'" />

@@ -24,13 +24,23 @@
     {
       <tr>
       <td>@Html.ActionLink(@treat.Name, "Details", new { id = treat.TreatId })</td>
-      <td>@Html.ActionLink("Edit", "Edit", new { id = treat.TreatId}) | @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId})</td>
+      @if (User.Identity.IsAuthenticated)
+      {
+        <td>@Html.ActionLink("Edit", "Edit", new { id = treat.TreatId}) | @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId})</td>
+      }
+      else
+      {
+        <td></td>
+      }
       </tr>
     }
   </tbody>
 </table> 
 
 <br>
+@if (User.Identity.IsAuthenticated)
+{
 <input type="button" class="btn btn-primary mb-2" value="Add a New Treat" onclick="location.href='@Url.Action("Create", "Treats")'" />
 <br>
-<input type="button" class="btn btn-info" value="Flavor List" onclick="location.href='@Url.Action("Index", "Flavors")'" />
+}
+<input type="button" class="btn btn-info" value="Flavors List" onclick="location.href='@Url.Action("Index", "Flavors")'" />

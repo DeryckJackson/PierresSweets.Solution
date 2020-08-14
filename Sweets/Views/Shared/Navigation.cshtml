@@ -9,15 +9,24 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
         </li>
+        @if (User.Identity.IsAuthenticated)
+        {
         <li class="nav-item">
           <a class="nav-link" href="/Account">Account</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Account/LogOff">Log Out</a>
+        </li>
+        }
+        else
+        {
         <li class="nav-item">
           <a class="nav-link" href="/Account/Register">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/Account/Login">Sign-In</a>
         </li>
+        }
       </ul>
     </div>
   </nav>

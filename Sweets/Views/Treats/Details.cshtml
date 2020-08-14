@@ -20,16 +20,22 @@ else
   @foreach(var join in Model.Flavors)
   {
     <li>@join.Flavor.Name</li>
-    @using (Html.BeginForm("DeleteFlavor", "Treats"))
+    @if (User.Identity.IsAuthenticated)
     {
-    @Html.Hidden("joinId", @join.FlavorTreatId)
-    @Html.Hidden("id", Model.TreatId)
-    <input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
+      @using (Html.BeginForm("DeleteFlavor", "Treats"))
+      {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      @Html.Hidden("id", Model.TreatId)
+      <input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
+      }
     }
   }
   </ul>
 }
 
+@if (User.Identity.IsAuthenticated)
+{
 <input type="button" class="btn btn-primary mb-2" value="Add Flavor to Treat" onclick="location.href='@Url.Action("AddFlavor", "Treats", new { id = Model.TreatId })'" />
 <br>
+}
 <input type="button" class="btn btn-info" value="Back to Treat List" onclick="location.href='@Url.Action("Index", "Treats")'" />

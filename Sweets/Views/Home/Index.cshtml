@@ -2,8 +2,39 @@
   Layout = "_Layout";
 }
 
+@using Sweets.Models
+
 <h1 class="jumbotron">Treats and Flavors</h1>
 
+<h2>Engineers and Machines</h2>
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach(Treat treat in ViewBag.Treats) 
+    {
+      <tr>
+      <td>@Html.ActionLink(treat.Name, "Details", "Treats", new { id = treat.TreatId})</td>
+      <td>Treat</td>
+      <td></td>
+      </tr>
+    }
+    @foreach(Flavor flav in ViewBag.Flavors) 
+    {
+      <tr>
+      <td>@Html.ActionLink(flav.Name, "Details", "Flavors", new { id = flav.FlavorId})</td>
+      <td>Flavor</td>
+      <td></td>
+      </tr>
+    }
+  </tbody>
+</table>
 
-<p>@Html.ActionLink("View Treats", "Index", "Treats")</p>
-<p>@Html.ActionLink("View Flavors", "Index", "Flavors")</p>
+<input type="button" class="btn btn-info mb-2" value="Treats List" onclick="location.href='@Url.Action("Index", "Treats")'" />
+<br>
+<input type="button" class="btn btn-info" value="Flavors List" onclick="location.href='@Url.Action("Index", "Flavors")'" />
