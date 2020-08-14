@@ -24,12 +24,12 @@ else
     {
     @Html.Hidden("joinId", @join.FlavorTreatId)
     @Html.Hidden("id", Model.TreatId)
-    <input class="btn btn-danger" type="submit" value="Delete"/>
+    <input class="btn btn-danger btn-sm" type="submit" value="Delete"/>
     }
   }
   </ul>
 }
 
-<input type="button" class="btn btn-primary" value="Add Flavor to Treat" onclick="location.href='@Url.Action("AddFlavor", "Treats", new { id = Model.TreatId })'" /><br>
+<input type="button" class="btn btn-primary mb-2" value="Add Flavor to Treat" onclick="location.href='@Url.Action("AddFlavor", "Treats", new { id = Model.TreatId })'" />
 <br>
 <input type="button" class="btn btn-info" value="Back to Treat List" onclick="location.href='@Url.Action("Index", "Treats")'" />
