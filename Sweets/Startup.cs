@@ -26,10 +26,10 @@ namespace Sweets
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<SweetsContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
 
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+      services.AddIdentity<User, IdentityRole>()
         .AddEntityFrameworkStores<SweetsContext>()
         .AddDefaultTokenProviders();
 
