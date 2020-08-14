@@ -23,8 +23,8 @@
   @foreach(Treat treat in Model) 
     {
       <tr>
-      <td>@treat.Name</td>
-      <td>@Html.ActionLink("Edit", "Edit", new { id = treat.TreatId })  |  @Html.ActionLink("Details", "Details", new { id = treat.TreatId}) | @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId})</td>
+      <td>@Html.ActionLink(@treat.Name, "Details", new { id = treat.TreatId })</td>
+      <td>@Html.ActionLink("Edit", "Edit", new { id = treat.TreatId}) | @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId})</td>
       </tr>
     }
   </tbody>

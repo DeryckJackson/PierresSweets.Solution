@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@using Sweets.Models;
+@model Sweets.Models.Treat;
+
+<h1 class="jumbotron">Treat Details</h1>
+<hr/>
+<h4>Name: @Html.DisplayFor(model => model.Name)</h4>
+<hr/>
+
+@if(@Model.Flavors.Count == 0)
+{
+  <p>This Treat doesn't have any flavors yet.</p>
+}
+else
+{
+  <h4>Flavors:</h4>
+  <ul>
+  @foreach(var join in Model.Flavors)
+  {
+    <li>@join.Flavor.Name</li>
+    @using (Html.BeginForm("DeleteMachine", "Engineers"))
+    {
+    @Html.Hidden("joinId", @join.FlavorTreatId)
+    <input class="btn btn-danger" type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+}
+
+<input type="button" class="btn btn-primary" value="Add Flavor to Treat" onclick="location.href='@Url.Action("AddFlavor", "Treats", new { id = Model.TreatId })'" /><br>
+<input type="button" class="btn btn-primary" value="Back to Treat List" onclick="location.href='@Url.Action("Index", "Treats")'" />
